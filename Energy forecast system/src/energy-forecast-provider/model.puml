@@ -1,0 +1,25 @@
+@startuml
+
+hide methods
+
+package eu.arrowhead.client.common.can_be_modified.model {
+
+class Message {
+Long tstart
+Long tend
+}
+
+class Entry {
+Long building
+Long timestamp
+Float outTemp
+Float inTemp
+Float total
+Float water
+}
+
+Message -> "0..*" Entry
+
+}
+
+@enduml

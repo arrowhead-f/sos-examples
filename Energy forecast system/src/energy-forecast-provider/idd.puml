@@ -1,0 +1,15 @@
+@startuml
+participant "Client1" as efc <<Consumer>>
+participant "EnergyForecast" as efp <<Provider>>
+
+
+[-> efc
+activate efc
+efc -> efp: GetForecast(id, ts)\n<i>/forecast?building=&#171;id&#187;&timestamp=&#171;ts&#187;</i>
+activate efp
+efp -> efc: Message
+deactivate efp
+[<-efc
+deactivate efc
+
+@enduml

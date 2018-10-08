@@ -1,0 +1,50 @@
+@startuml
+participant "EnergyForecast" as efp <<Provider>>
+participant "Outdoor" as odp <<Provider>>
+participant "Indoor" as idp <<Provider>>
+participant "Client1" as efc <<Consumer>>
+
+[-> efp
+activate efp
+
+== Initialisation (no cache) ==
+
+efp -> odp: GetHistoricData(0, now)\n<i>/provider?Tstart=0&Tend=&#171;now&#187;</i>
+activate odp
+odp -> efp
+deactivate odp
+efp -> idp: GetHistoricData(0, now)\n/provider?Tstart=0&Tend=&#171;now&#187;</i>
+activate idp
+idp -> efp
+deactivate idp
+efp -> efp: UpdateModel()
+
+== Every 7 days ==
+
+efp -> odp: GetHistoricData(last, now)\n<i>/provider?Tstart=&#171;last&#187;&Tend=&#171;now&#187;</i>
+activate odp
+odp -> efp
+deactivate odp
+efp -> idp: GetHistoricData(last, now)\n<i>/provider?Tstart=&#171;last&#187;&Tend=&#171;now&#187;</i>
+activate idp
+idp -> efp
+deactivate idp
+efp -> efp: UpdateModel()
+
+== On requests ==
+
+[-> efc
+activate efc
+efc -> efp: GetForecast(id, ts)\n<i>/forecast?building=&#171;id&#187;&timestamp=&#171;ts&#187;</i>
+activate efp
+efp -> odp: GetForecastData(ts-3600, ts+1800)\n<i>/provider?Building=&#171;id&#187;&Tstart=&#171;ts-3600&#187;&Tend=&#171;ts+1800&#187;</i>
+activate odp
+odp -> efp
+deactivate odp
+efp -> efp: ApplyModel()
+efp -> efc
+deactivate efp
+[<-efc
+deactivate efc
+
+@enduml
