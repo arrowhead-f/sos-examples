@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <!--<module>Energy forecast system/src</module>-->
+        <module>energy-forecast</module>
     </modules>
 
 </project>

@@ -27,3 +27,5 @@
 */target
 *.txt
 *app.conf
+*.p12
+*.pub
