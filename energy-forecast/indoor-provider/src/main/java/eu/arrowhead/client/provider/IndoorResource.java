@@ -12,7 +12,7 @@ package eu.arrowhead.client.provider;
 import eu.arrowhead.common.Entry;
 import eu.arrowhead.common.Message;
 import eu.arrowhead.common.SampleData;
-import eu.arrowhead.common.api.ArrowheadServer;
+import eu.arrowhead.common.api.ArrowheadHttpServer;
 import eu.arrowhead.common.api.resources.ArrowheadResource;
 import org.joda.time.DateTime;
 
@@ -28,7 +28,7 @@ import java.util.ArrayList;
 //REST service example
 public class IndoorResource extends ArrowheadResource {
 
-    public IndoorResource(ArrowheadServer server) {
+    public IndoorResource(ArrowheadHttpServer server) {
         super(server);
     }
 

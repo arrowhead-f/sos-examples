@@ -11,13 +11,11 @@ package eu.arrowhead.client.provider;
 
 import eu.arrowhead.common.Entry;
 import eu.arrowhead.common.Message;
+import eu.arrowhead.common.api.ArrowheadHttpServer;
 import eu.arrowhead.common.api.ArrowheadSecurityContext;
-import eu.arrowhead.common.api.ArrowheadServer;
 import eu.arrowhead.common.api.clients.OrchestrationClient;
 import eu.arrowhead.common.api.clients.RestClient;
 import eu.arrowhead.common.api.resources.ArrowheadResource;
-import eu.arrowhead.common.exception.AuthException;
-import eu.arrowhead.common.exception.KeystoreException;
 import eu.arrowhead.common.model.ArrowheadSystem;
 import org.joda.time.DateTime;
 
@@ -37,7 +35,7 @@ public class EnergyForecastResource extends ArrowheadResource {
     @Context
     private Configuration configuration;
 
-    public EnergyForecastResource(ArrowheadServer server) {
+    public EnergyForecastResource(ArrowheadHttpServer server) {
         super(server);
 
         final ArrowheadSecurityContext securityContext = ArrowheadSecurityContext.createFromProperties();

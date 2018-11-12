@@ -11,8 +11,9 @@ package eu.arrowhead.client.provider;
 
 import eu.arrowhead.common.Message;
 import eu.arrowhead.common.api.ArrowheadApplication;
+import eu.arrowhead.common.api.ArrowheadGrizzlyHttpServer;
+import eu.arrowhead.common.api.ArrowheadHttpServer;
 import eu.arrowhead.common.api.ArrowheadSecurityContext;
-import eu.arrowhead.common.api.ArrowheadServer;
 import eu.arrowhead.common.api.clients.OrchestrationClient;
 import eu.arrowhead.common.api.clients.RestClient;
 import eu.arrowhead.common.api.clients.ServiceRegistryClient;
@@ -41,7 +42,7 @@ public class EnergyForecastProvider extends ArrowheadApplication {
     protected void onStart() {
         final ArrowheadSecurityContext securityContext = ArrowheadSecurityContext.createFromProperties(true);
 
-        final ArrowheadServer server = ArrowheadServer
+        final ArrowheadHttpServer server = ArrowheadGrizzlyHttpServer
                 .createFromProperties(securityContext)
                 .addResources(EnergyForecastResource.class)
                 .start();
