@@ -40,14 +40,10 @@ public class EnergyForecastResource extends ArrowheadResource {
     public EnergyForecastResource(ArrowheadServer server) {
         super(server);
 
-        try {
-            final ArrowheadSecurityContext securityContext = ArrowheadSecurityContext.createFromProperties();
-            final OrchestrationClient orchestrationClient = OrchestrationClient.createFromProperties(securityContext);
-            final ArrowheadSystem me = ArrowheadSystem.createFromProperties(server);
-            outdoorClient = EnergyForecastUtils.createClient(orchestrationClient, me, "Outdoor");
-        } catch (KeystoreException e) {
-            throw new AuthException("Failed to load security context", e);
-        }
+        final ArrowheadSecurityContext securityContext = ArrowheadSecurityContext.createFromProperties();
+        final OrchestrationClient orchestrationClient = OrchestrationClient.createFromProperties(securityContext);
+        final ArrowheadSystem me = ArrowheadSystem.createFromProperties(server);
+        outdoorClient = EnergyForecastUtils.createClient(orchestrationClient, me, "Outdoor");
     }
 
     @GET

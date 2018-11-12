@@ -9,37 +9,38 @@
 
 package eu.arrowhead.client.provider;
 
-import eu.arrowhead.common.api.ArrowheadClient;
+import eu.arrowhead.common.api.ArrowheadApplication;
 import eu.arrowhead.common.api.ArrowheadSecurityContext;
 import eu.arrowhead.common.api.ArrowheadServer;
 import eu.arrowhead.common.api.clients.ServiceRegistryClient;
 import eu.arrowhead.common.model.ServiceRegistryEntry;
 
-public class IndoorProvider extends ArrowheadClient {
+public class IndoorProvider extends ArrowheadApplication {
 
-  public static void main(String[] args) {
-    new IndoorProvider(args).start(true);
-  }
+    public static void main(String[] args) {
+        new IndoorProvider(args).start(true);
+    }
 
-  private IndoorProvider(String[] args) {
-    super(args);
-  }
+    private IndoorProvider(String[] args) {
+        super(args);
+    }
 
-  @Override
-  protected void onStart(ArrowheadSecurityContext securityContext) {
-    final ArrowheadServer server = ArrowheadServer
-            .createFromProperties(securityContext)
-            .addResources(IndoorResource.class)
-            .start();
+    @Override
+    protected void onStart() {
+        final ArrowheadSecurityContext securityContext = ArrowheadSecurityContext.createFromProperties(true);
+        final ArrowheadServer server = ArrowheadServer
+                .createFromProperties(securityContext)
+                .addResources(IndoorResource.class)
+                .start();
 
-    ServiceRegistryClient
-            .createFromProperties(securityContext)
-            .register(ServiceRegistryEntry.createFromProperties(server));
-  }
+        ServiceRegistryClient
+                .createFromProperties(securityContext)
+                .register(ServiceRegistryEntry.createFromProperties(server));
+    }
 
-  @Override
-  protected void onStop() {
+    @Override
+    protected void onStop() {
 
-  }
+    }
 
 }

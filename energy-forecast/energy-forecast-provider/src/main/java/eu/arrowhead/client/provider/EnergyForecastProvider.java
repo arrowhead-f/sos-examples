@@ -10,7 +10,7 @@
 package eu.arrowhead.client.provider;
 
 import eu.arrowhead.common.Message;
-import eu.arrowhead.common.api.ArrowheadClient;
+import eu.arrowhead.common.api.ArrowheadApplication;
 import eu.arrowhead.common.api.ArrowheadSecurityContext;
 import eu.arrowhead.common.api.ArrowheadServer;
 import eu.arrowhead.common.api.clients.OrchestrationClient;
@@ -24,7 +24,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class EnergyForecastProvider extends ArrowheadClient {
+public class EnergyForecastProvider extends ArrowheadApplication {
 
     private RestClient outdoorClient;
     private RestClient indoorClient;
@@ -38,7 +38,9 @@ public class EnergyForecastProvider extends ArrowheadClient {
     }
 
     @Override
-    protected void onStart(ArrowheadSecurityContext securityContext) {
+    protected void onStart() {
+        final ArrowheadSecurityContext securityContext = ArrowheadSecurityContext.createFromProperties(true);
+
         final ArrowheadServer server = ArrowheadServer
                 .createFromProperties(securityContext)
                 .addResources(EnergyForecastResource.class)

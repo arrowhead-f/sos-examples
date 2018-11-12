@@ -10,14 +10,14 @@
 package eu.arrowhead.client.consumer;
 
 import eu.arrowhead.common.Message;
-import eu.arrowhead.common.api.ArrowheadClient;
+import eu.arrowhead.common.api.ArrowheadApplication;
 import eu.arrowhead.common.api.ArrowheadSecurityContext;
 import eu.arrowhead.common.api.clients.OrchestrationClient;
 import eu.arrowhead.common.api.clients.RestClient;
 import eu.arrowhead.common.misc.Utility;
 import eu.arrowhead.common.model.*;
 
-public class IndoorConsumer extends ArrowheadClient {
+public class IndoorConsumer extends ArrowheadApplication {
     public static void main(String[] args) {
         new IndoorConsumer(args).start(false);
     }
@@ -27,7 +27,8 @@ public class IndoorConsumer extends ArrowheadClient {
     }
 
     @Override
-    protected void onStart(ArrowheadSecurityContext securityContext) {
+    protected void onStart() {
+        final ArrowheadSecurityContext securityContext = ArrowheadSecurityContext.createFromProperties(true);
         final ArrowheadSystem me = ArrowheadSystem.createFromProperties();
         final OrchestrationClient orchestrationClient = OrchestrationClient.createFromProperties(securityContext);
         final ServiceRequestForm serviceRequestForm = new ServiceRequestForm.Builder(me)

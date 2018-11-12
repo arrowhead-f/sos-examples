@@ -10,7 +10,7 @@
 package eu.arrowhead.client.consumer;
 
 import eu.arrowhead.common.Message;
-import eu.arrowhead.common.api.ArrowheadClient;
+import eu.arrowhead.common.api.ArrowheadApplication;
 import eu.arrowhead.common.api.ArrowheadSecurityContext;
 import eu.arrowhead.common.api.clients.OrchestrationClient;
 import eu.arrowhead.common.api.clients.RestClient;
@@ -19,7 +19,7 @@ import eu.arrowhead.common.model.OrchestrationFlags;
 import eu.arrowhead.common.model.ServiceRequestForm;
 import org.joda.time.DateTime;
 
-public class EnergyForecastConsumer extends ArrowheadClient {
+public class EnergyForecastConsumer extends ArrowheadApplication {
     public static void main(String[] args) {
         new EnergyForecastConsumer(args).start(false);
     }
@@ -29,7 +29,8 @@ public class EnergyForecastConsumer extends ArrowheadClient {
     }
 
     @Override
-    protected void onStart(ArrowheadSecurityContext securityContext) {
+    protected void onStart() {
+        final ArrowheadSecurityContext securityContext = ArrowheadSecurityContext.createFromProperties(true);
         final ArrowheadSystem me = ArrowheadSystem.createFromProperties();
         final OrchestrationClient orchestrationClient = OrchestrationClient.createFromProperties(securityContext);
         final ServiceRequestForm serviceRequestForm = new ServiceRequestForm.Builder(me)

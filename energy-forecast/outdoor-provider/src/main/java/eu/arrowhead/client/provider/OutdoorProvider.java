@@ -9,13 +9,13 @@
 
 package eu.arrowhead.client.provider;
 
-import eu.arrowhead.common.api.ArrowheadClient;
+import eu.arrowhead.common.api.ArrowheadApplication;
 import eu.arrowhead.common.api.ArrowheadSecurityContext;
 import eu.arrowhead.common.api.ArrowheadServer;
 import eu.arrowhead.common.api.clients.ServiceRegistryClient;
 import eu.arrowhead.common.model.ServiceRegistryEntry;
 
-public class OutdoorProvider extends ArrowheadClient {
+public class OutdoorProvider extends ArrowheadApplication {
 
     public static void main(String[] args) {
         new OutdoorProvider(args).start();
@@ -26,7 +26,8 @@ public class OutdoorProvider extends ArrowheadClient {
     }
 
     @Override
-    protected void onStart(ArrowheadSecurityContext securityContext) {
+    protected void onStart() {
+        final ArrowheadSecurityContext securityContext = ArrowheadSecurityContext.createFromProperties(true);
         final ArrowheadServer server = ArrowheadServer
                 .createFromProperties(securityContext)
                 .addResources(OutdoorResource.class)
