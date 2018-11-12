@@ -19,7 +19,7 @@ import eu.arrowhead.common.model.*;
 
 public class IndoorConsumer extends ArrowheadApplication {
     public static void main(String[] args) {
-        new IndoorConsumer(args).start(false);
+        new IndoorConsumer(args).start();
     }
 
     private IndoorConsumer(String[] args) {

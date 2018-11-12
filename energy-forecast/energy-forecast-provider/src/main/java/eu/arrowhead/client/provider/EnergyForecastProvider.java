@@ -30,7 +30,7 @@ public class EnergyForecastProvider extends ArrowheadApplication {
     private RestClient indoorClient;
 
     public static void main(String[] args) {
-        new EnergyForecastProvider(args).start(true);
+        new EnergyForecastProvider(args).start();
     }
 
     private EnergyForecastProvider(String[] args) {

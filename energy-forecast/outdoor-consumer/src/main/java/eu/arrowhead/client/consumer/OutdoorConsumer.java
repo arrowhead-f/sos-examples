@@ -18,7 +18,7 @@ import eu.arrowhead.common.model.*;
 
 public class OutdoorConsumer extends ArrowheadApplication {
     public static void main(String[] args) {
-        new OutdoorConsumer(args).start(false);
+        new OutdoorConsumer(args).start();
     }
 
     public OutdoorConsumer(String[] args) {

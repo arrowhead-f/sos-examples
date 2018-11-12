@@ -21,7 +21,7 @@ import org.joda.time.DateTime;
 
 public class EnergyForecastConsumer extends ArrowheadApplication {
     public static void main(String[] args) {
-        new EnergyForecastConsumer(args).start(false);
+        new EnergyForecastConsumer(args).start();
     }
 
     private EnergyForecastConsumer(String[] args) {

@@ -18,7 +18,7 @@ import eu.arrowhead.common.model.ServiceRegistryEntry;
 public class IndoorProvider extends ArrowheadApplication {
 
     public static void main(String[] args) {
-        new IndoorProvider(args).start(true);
+        new IndoorProvider(args).start();
     }
 
     private IndoorProvider(String[] args) {
