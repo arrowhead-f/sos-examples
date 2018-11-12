@@ -34,7 +34,7 @@ public class EnergyForecastConsumer extends ArrowheadApplication {
         final ArrowheadSystem me = ArrowheadSystem.createFromProperties();
         final OrchestrationClient orchestrationClient = OrchestrationClient.createFromProperties(securityContext);
         final ServiceRequestForm serviceRequestForm = new ServiceRequestForm.Builder(me)
-                .requestedService("energy", "json", isSecure())
+                .requestedService("energy", "json", getProps().isSecure())
                 .flag(OrchestrationFlags.Flags.OVERRIDE_STORE, true)
                 .flag(OrchestrationFlags.Flags.PING_PROVIDERS, false)
                 .flag(OrchestrationFlags.Flags.METADATA_SEARCH, true)
