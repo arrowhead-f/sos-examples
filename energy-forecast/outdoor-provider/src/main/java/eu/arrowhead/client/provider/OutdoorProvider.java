@@ -14,6 +14,7 @@ import eu.arrowhead.common.api.ArrowheadHttpServer;
 import eu.arrowhead.common.api.ArrowheadSecurityContext;
 import eu.arrowhead.common.api.ArrowheadGrizzlyHttpServer;
 import eu.arrowhead.common.api.clients.ServiceRegistryClient;
+import eu.arrowhead.common.exception.NotFoundException;
 import eu.arrowhead.common.model.ServiceRegistryEntry;
 
 public class OutdoorProvider extends ArrowheadApplication {
@@ -27,7 +28,7 @@ public class OutdoorProvider extends ArrowheadApplication {
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart() throws NotFoundException {
         final ArrowheadSecurityContext securityContext = ArrowheadSecurityContext.createFromProperties(true);
         final ArrowheadHttpServer server = ArrowheadGrizzlyHttpServer
                 .createFromProperties(securityContext)

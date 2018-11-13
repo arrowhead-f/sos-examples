@@ -17,6 +17,7 @@ import eu.arrowhead.common.api.ArrowheadSecurityContext;
 import eu.arrowhead.common.api.clients.OrchestrationClient;
 import eu.arrowhead.common.api.clients.RestClient;
 import eu.arrowhead.common.api.clients.ServiceRegistryClient;
+import eu.arrowhead.common.exception.NotFoundException;
 import eu.arrowhead.common.model.ArrowheadSystem;
 import eu.arrowhead.common.model.ServiceRegistryEntry;
 import org.joda.time.DateTime;
@@ -39,7 +40,7 @@ public class EnergyForecastProvider extends ArrowheadApplication {
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart() throws NotFoundException {
         final ArrowheadSecurityContext securityContext = ArrowheadSecurityContext.createFromProperties(true);
 
         final ArrowheadHttpServer server = ArrowheadGrizzlyHttpServer
