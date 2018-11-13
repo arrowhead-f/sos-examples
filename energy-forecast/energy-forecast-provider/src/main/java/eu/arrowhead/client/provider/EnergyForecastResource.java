@@ -11,10 +11,10 @@ package eu.arrowhead.client.provider;
 
 import eu.arrowhead.common.Entry;
 import eu.arrowhead.common.Message;
+import eu.arrowhead.common.api.clients.HttpClient;
 import eu.arrowhead.common.api.server.ArrowheadHttpServer;
 import eu.arrowhead.common.api.ArrowheadSecurityContext;
-import eu.arrowhead.common.api.clients.OrchestrationClient;
-import eu.arrowhead.common.api.clients.RestClient;
+import eu.arrowhead.common.api.clients.core.OrchestrationClient;
 import eu.arrowhead.common.api.resources.ArrowheadResource;
 import eu.arrowhead.common.model.ArrowheadSystem;
 import org.joda.time.DateTime;
@@ -30,7 +30,7 @@ import java.util.List;
 @Path("forecast")
 @Produces(MediaType.APPLICATION_JSON)
 public class EnergyForecastResource extends ArrowheadResource {
-    private final RestClient outdoorClient;
+    private final HttpClient outdoorClient;
 
     @Context
     private Configuration configuration;

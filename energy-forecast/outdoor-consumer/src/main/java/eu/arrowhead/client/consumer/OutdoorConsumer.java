@@ -12,8 +12,9 @@ package eu.arrowhead.client.consumer;
 import eu.arrowhead.common.Message;
 import eu.arrowhead.common.api.ArrowheadApplication;
 import eu.arrowhead.common.api.ArrowheadSecurityContext;
-import eu.arrowhead.common.api.clients.OrchestrationClient;
-import eu.arrowhead.common.api.clients.RestClient;
+import eu.arrowhead.common.api.clients.HttpClient;
+import eu.arrowhead.common.api.clients.StaticHttpClient;
+import eu.arrowhead.common.api.clients.core.OrchestrationClient;
 import eu.arrowhead.common.model.*;
 
 public class OutdoorConsumer extends ArrowheadApplication {
@@ -37,7 +38,7 @@ public class OutdoorConsumer extends ArrowheadApplication {
                 .flag(OrchestrationFlags.Flags.METADATA_SEARCH, true)
                 .flag(OrchestrationFlags.Flags.ENABLE_INTER_CLOUD, false)
                 .build();
-        final RestClient outdoorClient = orchestrationClient.buildClient(serviceRequestForm);
+        final HttpClient outdoorClient = orchestrationClient.buildClient(serviceRequestForm, new StaticHttpClient.Builder());
         final Message message = outdoorClient.get().send().readEntity(Message.class);
         log.info("Got " + message.getEntry().size() + " entries.");
     }

@@ -11,12 +11,12 @@ package eu.arrowhead.client.provider;
 
 import eu.arrowhead.common.Message;
 import eu.arrowhead.common.api.ArrowheadApplication;
+import eu.arrowhead.common.api.clients.HttpClient;
 import eu.arrowhead.common.api.server.ArrowheadGrizzlyHttpServer;
 import eu.arrowhead.common.api.server.ArrowheadHttpServer;
 import eu.arrowhead.common.api.ArrowheadSecurityContext;
-import eu.arrowhead.common.api.clients.OrchestrationClient;
-import eu.arrowhead.common.api.clients.RestClient;
-import eu.arrowhead.common.api.clients.ServiceRegistryClient;
+import eu.arrowhead.common.api.clients.core.OrchestrationClient;
+import eu.arrowhead.common.api.clients.core.ServiceRegistryClient;
 import eu.arrowhead.common.exception.NotFoundException;
 import eu.arrowhead.common.model.ArrowheadSystem;
 import eu.arrowhead.common.model.ServiceRegistryEntry;
@@ -28,8 +28,8 @@ import java.util.concurrent.TimeUnit;
 
 public class EnergyForecastProvider extends ArrowheadApplication {
 
-    private RestClient outdoorClient;
-    private RestClient indoorClient;
+    private HttpClient outdoorClient;
+    private HttpClient indoorClient;
 
     public static void main(String[] args) {
         new EnergyForecastProvider(args).start();

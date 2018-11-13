@@ -12,8 +12,9 @@ package eu.arrowhead.client.consumer;
 import eu.arrowhead.common.Message;
 import eu.arrowhead.common.api.ArrowheadApplication;
 import eu.arrowhead.common.api.ArrowheadSecurityContext;
-import eu.arrowhead.common.api.clients.OrchestrationClient;
-import eu.arrowhead.common.api.clients.RestClient;
+import eu.arrowhead.common.api.clients.HttpClient;
+import eu.arrowhead.common.api.clients.StaticHttpClient;
+import eu.arrowhead.common.api.clients.core.OrchestrationClient;
 import eu.arrowhead.common.misc.Utility;
 import eu.arrowhead.common.model.*;
 
@@ -38,7 +39,7 @@ public class IndoorConsumer extends ArrowheadApplication {
                 .flag(OrchestrationFlags.Flags.METADATA_SEARCH, true)
                 .flag(OrchestrationFlags.Flags.ENABLE_INTER_CLOUD, false)
                 .build();
-        final RestClient indoorClient = orchestrationClient.buildClient(serviceRequestForm);
+        final HttpClient indoorClient = orchestrationClient.buildClient(serviceRequestForm, new StaticHttpClient.Builder());
         final Message message = indoorClient.get().send().readEntity(Message.class);
         System.out.println("Provider Response payload: " + Utility.toPrettyJson(null, message));
     }
