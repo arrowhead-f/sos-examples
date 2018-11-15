@@ -39,8 +39,7 @@ public class IndoorConsumer extends ArrowheadApplication {
                 .flag(OrchestrationFlags.Flags.METADATA_SEARCH, true)
                 .flag(OrchestrationFlags.Flags.ENABLE_INTER_CLOUD, false)
                 .build();
-        final OrchestrationStrategy strategy = new OrchestrationStrategy.Once(orchestrationClient, serviceRequestForm);
-        final HttpClient indoorClient = new HttpClient(strategy, getProps().isSecure(), securityContext);
+        final HttpClient indoorClient = new HttpClient(new OrchestrationStrategy.Once(orchestrationClient, serviceRequestForm), securityContext);
         final Message message = indoorClient.request(HttpClient.Method.GET).readEntity(Message.class);
         System.out.println("Provider Response payload: " + Utility.toPrettyJson(null, message));
     }

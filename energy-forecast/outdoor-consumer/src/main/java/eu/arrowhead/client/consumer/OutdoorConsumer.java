@@ -40,8 +40,7 @@ public class OutdoorConsumer extends ArrowheadApplication {
                 .flag(OrchestrationFlags.Flags.METADATA_SEARCH, true)
                 .flag(OrchestrationFlags.Flags.ENABLE_INTER_CLOUD, false)
                 .build();
-        final OrchestrationStrategy strategy = new OrchestrationStrategy.Once(orchestrationClient, serviceRequestForm);
-        final HttpClient outdoorClient = new HttpClient(strategy, getProps().isSecure(), securityContext);
+        final HttpClient outdoorClient = new HttpClient(new OrchestrationStrategy.Once(orchestrationClient, serviceRequestForm), securityContext);
         final Message message = outdoorClient.request(HttpClient.Method.GET).readEntity(Message.class);
         log.info("Got " + message.getEntry().size() + " entries.");
     }

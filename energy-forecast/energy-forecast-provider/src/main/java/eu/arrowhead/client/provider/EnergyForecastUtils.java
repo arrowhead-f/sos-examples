@@ -21,7 +21,6 @@ public class EnergyForecastUtils {
                 .flag(OrchestrationFlags.Flags.ENABLE_INTER_CLOUD, false)
                 .build();
 
-        final OrchestrationStrategy strategy = new OrchestrationStrategy.Always(orchestrationClient, srf);
-        return new HttpClient(strategy, secure, securityContext);
+        return new HttpClient(new OrchestrationStrategy.Always(orchestrationClient, srf), securityContext);
     }
 }

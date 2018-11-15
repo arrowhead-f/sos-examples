@@ -43,8 +43,7 @@ public class EnergyForecastConsumer extends ArrowheadApplication {
                 .flag(OrchestrationFlags.Flags.METADATA_SEARCH, true)
                 .flag(OrchestrationFlags.Flags.ENABLE_INTER_CLOUD, false)
                 .build();
-        final OrchestrationStrategy strategy = new OrchestrationStrategy.Once(orchestrationClient, serviceRequestForm);
-        final HttpClient energyClient = new HttpClient(strategy, getProps().isSecure(), securityContext);
+        final HttpClient energyClient = new HttpClient(new OrchestrationStrategy.Once(orchestrationClient, serviceRequestForm), securityContext);
 
         final DateTime ts = DateTime.now().plusHours(1);
         final Message message = energyClient.request(HttpClient.Method.GET,
