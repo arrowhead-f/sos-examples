@@ -13,12 +13,14 @@ import eu.arrowhead.common.Message;
 import eu.arrowhead.common.api.ArrowheadApplication;
 import eu.arrowhead.common.api.ArrowheadSecurityContext;
 import eu.arrowhead.common.api.clients.HttpClient;
-import eu.arrowhead.common.api.clients.StaticHttpClient;
+import eu.arrowhead.common.api.clients.OrchestrationStrategy;
 import eu.arrowhead.common.api.clients.core.OrchestrationClient;
 import eu.arrowhead.common.model.ArrowheadSystem;
 import eu.arrowhead.common.model.OrchestrationFlags;
 import eu.arrowhead.common.model.ServiceRequestForm;
 import org.joda.time.DateTime;
+
+import javax.ws.rs.core.UriBuilder;
 
 public class EnergyForecastConsumer extends ArrowheadApplication {
     public static void main(String[] args) {
@@ -41,13 +43,14 @@ public class EnergyForecastConsumer extends ArrowheadApplication {
                 .flag(OrchestrationFlags.Flags.METADATA_SEARCH, true)
                 .flag(OrchestrationFlags.Flags.ENABLE_INTER_CLOUD, false)
                 .build();
-        final HttpClient energyClient = orchestrationClient.buildClient(serviceRequestForm, new StaticHttpClient.Builder());
+        final OrchestrationStrategy strategy = new OrchestrationStrategy.StaticOrch(orchestrationClient, serviceRequestForm);
+        final HttpClient energyClient = new HttpClient(strategy, getProps().isSecure(), securityContext);
 
         final DateTime ts = DateTime.now().plusHours(1);
-        final Message message = energyClient.get()
-                .queryParam("building", 1)
-                .queryParam("timestamp", ts.getMillis() / 1000)
-                .send()
+        final Message message = energyClient.request(HttpClient.Method.GET,
+                UriBuilder.fromPath("")
+                        .queryParam("building", 1)
+                        .queryParam("timestamp", ts.getMillis() / 1000))
                 .readEntity(Message.class);
         log.info("Got " + message.getEntry().size() + " entries.");
     }

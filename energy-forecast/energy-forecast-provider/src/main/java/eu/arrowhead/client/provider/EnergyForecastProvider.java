@@ -22,6 +22,7 @@ import eu.arrowhead.common.model.ArrowheadSystem;
 import eu.arrowhead.common.model.ServiceRegistryEntry;
 import org.joda.time.DateTime;
 
+import javax.ws.rs.core.UriBuilder;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -72,15 +73,17 @@ public class EnergyForecastProvider extends ArrowheadApplication {
         log.info("Updating data and learning model");
         try {
             final long now = DateTime.now().getMillis() / 1000;
-            final Message outdoorData = outdoorClient.get()
-                    .queryParam("Tstart", Predicter.lastConsumptionTimeStamp())
-                    .queryParam("Tend", now)
-                    .send().readEntity(Message.class);
+            final Message outdoorData = outdoorClient.request(HttpClient.Method.GET,
+                    UriBuilder.fromPath("")
+                            .queryParam("Tstart", Predicter.lastConsumptionTimeStamp())
+                            .queryParam("Tend", now))
+                    .readEntity(Message.class);
             Predicter.update(outdoorData.getEntry());
-            final Message indoorData = indoorClient.get()
-                    .queryParam("Tstart", Predicter.lastIndoorTimeStamp())
-                    .queryParam("Tend", now)
-                    .send().readEntity(Message.class);
+            final Message indoorData = indoorClient.request(HttpClient.Method.GET,
+                    UriBuilder.fromPath("")
+                            .queryParam("Tstart", Predicter.lastIndoorTimeStamp())
+                            .queryParam("Tend", now))
+                    .readEntity(Message.class);
             Predicter.update(indoorData.getEntry());
         } catch (Exception e) {
             log.error("Error while learning", e);

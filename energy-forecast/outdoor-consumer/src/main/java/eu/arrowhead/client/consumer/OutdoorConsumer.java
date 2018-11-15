@@ -13,9 +13,11 @@ import eu.arrowhead.common.Message;
 import eu.arrowhead.common.api.ArrowheadApplication;
 import eu.arrowhead.common.api.ArrowheadSecurityContext;
 import eu.arrowhead.common.api.clients.HttpClient;
-import eu.arrowhead.common.api.clients.StaticHttpClient;
+import eu.arrowhead.common.api.clients.OrchestrationStrategy;
 import eu.arrowhead.common.api.clients.core.OrchestrationClient;
-import eu.arrowhead.common.model.*;
+import eu.arrowhead.common.model.ArrowheadSystem;
+import eu.arrowhead.common.model.OrchestrationFlags;
+import eu.arrowhead.common.model.ServiceRequestForm;
 
 public class OutdoorConsumer extends ArrowheadApplication {
     public static void main(String[] args) {
@@ -38,8 +40,9 @@ public class OutdoorConsumer extends ArrowheadApplication {
                 .flag(OrchestrationFlags.Flags.METADATA_SEARCH, true)
                 .flag(OrchestrationFlags.Flags.ENABLE_INTER_CLOUD, false)
                 .build();
-        final HttpClient outdoorClient = orchestrationClient.buildClient(serviceRequestForm, new StaticHttpClient.Builder());
-        final Message message = outdoorClient.get().send().readEntity(Message.class);
+        final OrchestrationStrategy strategy = new OrchestrationStrategy.StaticOrch(orchestrationClient, serviceRequestForm);
+        final HttpClient outdoorClient = new HttpClient(strategy, getProps().isSecure(), securityContext);
+        final Message message = outdoorClient.request(HttpClient.Method.GET).readEntity(Message.class);
         log.info("Got " + message.getEntry().size() + " entries.");
     }
 

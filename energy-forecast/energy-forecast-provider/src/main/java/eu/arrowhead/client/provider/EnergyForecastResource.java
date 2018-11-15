@@ -52,13 +52,12 @@ public class EnergyForecastResource extends ArrowheadResource {
                           @QueryParam("timestamp") long time
     ) {
         return verifier.verifiedResponse(context, token, signature, () -> {
-            List<Entry> forecasts = outdoorClient.get()
-                    .queryParam("Building", building)
-                    .queryParam("Tstart", time - 3600)
-                    .queryParam("Tend", time + 1800)
-                    .send()
-                    .readEntity(Message.class)
-                    .getEntry();
+            List<Entry> forecasts = outdoorClient.request(HttpClient.Method.GET,
+                    UriBuilder.fromPath("")
+                            .queryParam("Building", building)
+                            .queryParam("Tstart", time - 3600)
+                            .queryParam("Tend", time + 1800)
+            ).readEntity(Message.class).getEntry();
             Entry forecast = forecasts.get(forecasts.size() - 1);
 
             Entry entry = new Entry();
