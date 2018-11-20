@@ -11,13 +11,13 @@ package eu.arrowhead.client.provider;
 
 import eu.arrowhead.common.Message;
 import eu.arrowhead.common.api.ArrowheadApplication;
-import eu.arrowhead.common.api.clients.HttpClient;
-import eu.arrowhead.common.api.server.ArrowheadGrizzlyHttpServer;
-import eu.arrowhead.common.api.server.ArrowheadHttpServer;
 import eu.arrowhead.common.api.ArrowheadSecurityContext;
+import eu.arrowhead.common.api.clients.HttpClient;
 import eu.arrowhead.common.api.clients.core.OrchestrationClient;
 import eu.arrowhead.common.api.clients.core.ServiceRegistryClient;
-import eu.arrowhead.common.exception.NotFoundException;
+import eu.arrowhead.common.api.server.ArrowheadGrizzlyHttpServer;
+import eu.arrowhead.common.api.server.ArrowheadHttpServer;
+import eu.arrowhead.common.exception.ArrowheadException;
 import eu.arrowhead.common.model.ArrowheadSystem;
 import eu.arrowhead.common.model.ServiceRegistryEntry;
 import org.joda.time.DateTime;
@@ -41,7 +41,7 @@ public class EnergyForecastProvider extends ArrowheadApplication {
     }
 
     @Override
-    protected void onStart() throws NotFoundException {
+    protected void onStart() throws ArrowheadException {
         final ArrowheadSecurityContext securityContext = ArrowheadSecurityContext.createFromProperties(true);
 
         final ArrowheadHttpServer server = ArrowheadGrizzlyHttpServer
