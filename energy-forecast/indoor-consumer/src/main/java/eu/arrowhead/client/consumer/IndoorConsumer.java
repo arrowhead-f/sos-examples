@@ -11,12 +11,14 @@ package eu.arrowhead.client.consumer;
 
 import eu.arrowhead.common.Message;
 import eu.arrowhead.common.api.ArrowheadApplication;
+import eu.arrowhead.common.api.ArrowheadConverter;
 import eu.arrowhead.common.api.ArrowheadSecurityContext;
 import eu.arrowhead.common.api.clients.HttpClient;
 import eu.arrowhead.common.api.clients.OrchestrationStrategy;
 import eu.arrowhead.common.api.clients.core.OrchestrationClient;
-import eu.arrowhead.common.misc.Utility;
-import eu.arrowhead.common.model.*;
+import eu.arrowhead.common.model.ArrowheadSystem;
+import eu.arrowhead.common.model.OrchestrationFlags;
+import eu.arrowhead.common.model.ServiceRequestForm;
 
 public class IndoorConsumer extends ArrowheadApplication {
     public static void main(String[] args) {
@@ -41,7 +43,7 @@ public class IndoorConsumer extends ArrowheadApplication {
                 .build();
         final HttpClient indoorClient = new HttpClient(new OrchestrationStrategy.Once(orchestrationClient, serviceRequestForm), securityContext);
         final Message message = indoorClient.request(HttpClient.Method.GET).readEntity(Message.class);
-        System.out.println("Provider Response payload: " + Utility.toPrettyJson(null, message));
+        System.out.println("Provider Response payload: " + ArrowheadConverter.JSON.toString(message));
     }
 
     @Override
