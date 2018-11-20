@@ -43,7 +43,7 @@ public class IndoorConsumer extends ArrowheadApplication {
                 .build();
         final HttpClient indoorClient = new HttpClient(new OrchestrationStrategy.Once(orchestrationClient, serviceRequestForm), securityContext);
         final Message message = indoorClient.request(HttpClient.Method.GET).readEntity(Message.class);
-        System.out.println("Provider Response payload: " + ArrowheadConverter.JSON.toString(message));
+        System.out.println("Provider Response payload: " + ArrowheadConverter.json().toString(message));
     }
 
     @Override
