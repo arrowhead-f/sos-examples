@@ -15,6 +15,7 @@ import eu.arrowhead.common.api.ArrowheadSecurityContext;
 import eu.arrowhead.common.api.clients.HttpClient;
 import eu.arrowhead.common.api.clients.OrchestrationStrategy;
 import eu.arrowhead.common.api.clients.core.OrchestrationClient;
+import eu.arrowhead.common.exception.ArrowheadException;
 import eu.arrowhead.common.model.ArrowheadSystem;
 import eu.arrowhead.common.model.OrchestrationFlags;
 import eu.arrowhead.common.model.ServiceRequestForm;
@@ -23,11 +24,11 @@ import org.joda.time.DateTime;
 import javax.ws.rs.core.UriBuilder;
 
 public class EnergyForecastConsumer extends ArrowheadApplication {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ArrowheadException {
         new EnergyForecastConsumer(args).start();
     }
 
-    private EnergyForecastConsumer(String[] args) {
+    private EnergyForecastConsumer(String[] args) throws ArrowheadException {
         super(args);
     }
 

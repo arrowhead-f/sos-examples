@@ -32,11 +32,11 @@ public class EnergyForecastProvider extends ArrowheadApplication {
     private HttpClient outdoorClient;
     private HttpClient indoorClient;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ArrowheadException {
         new EnergyForecastProvider(args).start();
     }
 
-    private EnergyForecastProvider(String[] args) {
+    private EnergyForecastProvider(String[] args) throws ArrowheadException {
         super(args);
     }
 

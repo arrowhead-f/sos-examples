@@ -19,11 +19,11 @@ import eu.arrowhead.common.model.ServiceRegistryEntry;
 
 public class OutdoorProvider extends ArrowheadApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ArrowheadException {
         new OutdoorProvider(args).start();
     }
 
-    public OutdoorProvider(String[] args) {
+    public OutdoorProvider(String[] args) throws ArrowheadException {
         super(args);
     }
 

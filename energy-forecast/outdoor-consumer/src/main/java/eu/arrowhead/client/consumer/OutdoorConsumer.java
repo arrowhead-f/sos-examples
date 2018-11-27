@@ -15,16 +15,17 @@ import eu.arrowhead.common.api.ArrowheadSecurityContext;
 import eu.arrowhead.common.api.clients.HttpClient;
 import eu.arrowhead.common.api.clients.OrchestrationStrategy;
 import eu.arrowhead.common.api.clients.core.OrchestrationClient;
+import eu.arrowhead.common.exception.ArrowheadException;
 import eu.arrowhead.common.model.ArrowheadSystem;
 import eu.arrowhead.common.model.OrchestrationFlags;
 import eu.arrowhead.common.model.ServiceRequestForm;
 
 public class OutdoorConsumer extends ArrowheadApplication {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ArrowheadException {
         new OutdoorConsumer(args).start();
     }
 
-    public OutdoorConsumer(String[] args) {
+    public OutdoorConsumer(String[] args) throws ArrowheadException {
         super(args);
     }
 
