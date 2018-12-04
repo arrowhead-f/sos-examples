@@ -1,0 +1,20 @@
+{
+  "providedService": {
+    "serviceDefinition": "IndoorTemperature",
+    "interfaces": [
+      "JSON"
+    ],
+    "serviceMetadata": {
+      "unit": "celsius"
+    }
+  },
+  "provider": {
+    "systemName": "InsecureTemperatureSensor",
+    "address": "0.0.0.0",
+    "port": 8460
+  },
+  "serviceUri": "temperature",
+  "udp": false,
+  "endOfValidity": "2020-01-01T00:00:00.000",
+  "version": 1
+}
