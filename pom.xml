@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>Energy forecast system/src</module>
+        <module>Energy forecast system</module>
         <module>Wireless sensor network system</module>
     </modules>
 
