@@ -13,7 +13,7 @@ import eu.arrowhead.common.Entry;
 import eu.arrowhead.common.Message;
 import eu.arrowhead.common.SampleData;
 import eu.arrowhead.common.api.server.ArrowheadHttpServer;
-import eu.arrowhead.common.api.resources.ArrowheadResource;
+import eu.arrowhead.common.api.server.ArrowheadResource;
 import org.joda.time.DateTime;
 
 import javax.ws.rs.*;

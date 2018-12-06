@@ -11,11 +11,11 @@ package eu.arrowhead.client.provider;
 
 import eu.arrowhead.common.Entry;
 import eu.arrowhead.common.Message;
-import eu.arrowhead.common.api.clients.HttpClient;
-import eu.arrowhead.common.api.server.ArrowheadHttpServer;
 import eu.arrowhead.common.api.ArrowheadSecurityContext;
+import eu.arrowhead.common.api.clients.HttpClient;
 import eu.arrowhead.common.api.clients.core.OrchestrationClient;
-import eu.arrowhead.common.api.resources.ArrowheadResource;
+import eu.arrowhead.common.api.server.ArrowheadHttpServer;
+import eu.arrowhead.common.api.server.ArrowheadResource;
 import eu.arrowhead.common.model.ArrowheadSystem;
 import org.joda.time.DateTime;
 
