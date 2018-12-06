@@ -14,7 +14,7 @@
   <parent>
     <artifactId>wsn-client</artifactId>
     <groupId>eu.arrowhead</groupId>
-    <version>4.0</version>
+    <version>4.1.0</version>
   </parent>
 
   <artifactId>rpm_provider</artifactId>
@@ -83,7 +83,7 @@
             </manifestEntries>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>eu.arrowhead.client.provider.FullProviderMain</mainClass>
+              <mainClass>eu.arrowhead.client.provider.RPMProviderMain</mainClass>
               <classpathPrefix>lib/</classpathPrefix>
             </manifest>
           </archive>

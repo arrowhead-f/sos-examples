@@ -1,4 +1,4 @@
-package eu.arrowhead.client.provider.model;
+package eu.arrowhead.client.common.model;
 
 import org.glassfish.jersey.internal.guava.MoreObjects;
 

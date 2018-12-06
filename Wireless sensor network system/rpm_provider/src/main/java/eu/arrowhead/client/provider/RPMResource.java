@@ -1,12 +1,9 @@
 package eu.arrowhead.client.provider;
 
-import eu.arrowhead.client.common.model.MeasurementEntry;
-import eu.arrowhead.client.common.model.TemperatureReadout;
-import eu.arrowhead.client.provider.model.RPMInput;
-import eu.arrowhead.client.provider.model.RPMOutput;
+import eu.arrowhead.client.common.model.RPMInput;
+import eu.arrowhead.client.common.model.RPMOutput;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;

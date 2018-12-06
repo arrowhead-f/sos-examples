@@ -40,7 +40,7 @@ class RequestVerification {
 
       Security.addProvider(new BouncyCastleProvider());
       Signature signatureInstance = Signature.getInstance("SHA256withRSA", "BC");
-      signatureInstance.initVerify(FullProviderMain.authorizationKey);
+      signatureInstance.initVerify(ProviderMain.authorizationKey);
       signatureInstance.update(tokenbytes);
 
       boolean verifies = signatureInstance.verify(signaturebytes);
@@ -49,7 +49,7 @@ class RequestVerification {
       }
 
       Cipher cipher = Cipher.getInstance("RSA/NONE/PKCS1Padding", "BC");
-      cipher.init(Cipher.DECRYPT_MODE, FullProviderMain.privateKey);
+      cipher.init(Cipher.DECRYPT_MODE, ProviderMain.privateKey);
       //Check if the provider public key registered in the database is the same as the one used by the provider at the moment
       byte[] byteToken = cipher.doFinal(tokenbytes);
 

@@ -38,15 +38,14 @@ import java.util.ServiceConfigurationError;
 import java.util.Set;
 import javax.ws.rs.core.UriBuilder;
 
-/* This version of the ProviderMain class has some extra functionalities, that are not mandatory to have:
+/* This version of the RPMProviderMain class has some extra functionalities, that are not mandatory to have:
     1) Secure (HTTPS) mode
     2) Authorization registration
     3) Orchestration Store registration
     4) Get payloads from JSON files
  */
-public class FullProviderMain extends ArrowheadClientMain {
+public class RPMProviderMain extends ArrowheadClientMain {
 
-  static String customResponsePayload;
   static PublicKey authorizationKey;
   static PrivateKey privateKey;
 
@@ -61,12 +60,12 @@ public class FullProviderMain extends ArrowheadClientMain {
   private static List<OrchestrationStore> storeEntry = new ArrayList<>();
 
   public static void main(String[] args) {
-    new FullProviderMain(args);
+    new RPMProviderMain(args);
   }
 
-  private FullProviderMain(String[] args) {
+  private RPMProviderMain(String[] args) {
     //Set<Class<?>> classes = new HashSet<>(Arrays.asList(TemperatureResource.class, RestResource.class));
-    Set<Class<?>> classes = new HashSet<>(Arrays.asList(HumidityResource.class, RestResource.class));
+    Set<Class<?>> classes = new HashSet<>(Arrays.asList(RPMResource.class, RestResource.class));
     String[] packages = {"eu.arrowhead.client.common"};
     init(ClientType.PROVIDER, args, classes, packages);
 
@@ -98,10 +97,6 @@ public class FullProviderMain extends ArrowheadClientMain {
     }
     if (NEED_ORCH) {
       registerToStore();
-    }
-
-    if (props.getBooleanProperty("payload_from_file", false)) {
-      customResponsePayload = props.getProperty("custom_payload");
     }
 
     listenForInput();
@@ -156,9 +151,6 @@ public class FullProviderMain extends ArrowheadClientMain {
     } else {
       String serviceDef = props.getProperty("service_name");
       String serviceUri = props.getProperty("service_uri");
-      if (!serviceUri.equals(TemperatureResource.SERVICE_URI)) {
-        System.out.println("WARNING: Service URI in config file does not match REST sub-path.");
-      }
       String interfaceList = props.getProperty("interfaces");
       Set<String> interfaces = new HashSet<>();
       if (interfaceList != null && !interfaceList.isEmpty()) {

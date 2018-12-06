@@ -16,7 +16,7 @@
   <parent>
     <artifactId>wsn-client</artifactId>
     <groupId>eu.arrowhead</groupId>
-    <version>4.0</version>
+    <version>4.1.0</version>
   </parent>
 
   <artifactId>client-common</artifactId>

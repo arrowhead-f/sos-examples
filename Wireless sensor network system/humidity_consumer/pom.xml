@@ -17,11 +17,10 @@
     <version>4.1.0</version>
   </parent>
 
-  <artifactId>humidity_provider</artifactId>
+  <artifactId>humidity_consumer</artifactId>
   <packaging>jar</packaging>
 
   <properties>
-    <bouncy.version>1.59</bouncy.version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.version>3.8.0</maven.compiler.version>
@@ -36,12 +35,6 @@
     <dependency>
       <groupId>eu.arrowhead</groupId>
       <artifactId>client-common</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.bouncycastle</groupId>
-      <artifactId>bcprov-jdk15on</artifactId>
-      <version>${bouncy.version}</version>
     </dependency>
 
   </dependencies>
@@ -83,7 +76,7 @@
             </manifestEntries>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>eu.arrowhead.client.provider.RPMProviderMain</mainClass>
+              <mainClass>eu.arrowhead.client.consumer.RPMConsumerMain</mainClass>
               <classpathPrefix>lib/</classpathPrefix>
             </manifest>
           </archive>

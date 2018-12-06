@@ -14,12 +14,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>eu.arrowhead</groupId>
   <artifactId>wsn-client</artifactId>
-  <version>4.0</version>
+  <version>4.1.0</version>
   <packaging>pom</packaging>
 
   <modules>
     <module>client-common</module>
+    <module>humidity_consumer</module>
     <module>humidity_provider</module>
+    <module>rpm_consumer</module>
     <module>rpm_provider</module>
   </modules>
 
