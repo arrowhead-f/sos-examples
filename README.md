@@ -6,7 +6,7 @@
 ### Current examples in this repository
 
 * Energy forecast demo SoS
-** Developed by Aalborg University as PoC
+  ** Developed by Aalborg University as PoC
 
 * How to define, design and implement Arrowhead Services, Systems in general
-** Bilbao tutorial materials
+  ** Bilbao tutorial materials
