@@ -43,6 +43,8 @@ These will be the systemNames that will be registered in the ServiceRegistry and
   * IDD filename: "RPM-JSON-CUSTOM-HTTP-SECURE_AC"
   
  Based on this design, the implementation is basically a modification of the provider and consumer skeletons. These can be found in this folder. 
+ 
+ _Since this is a secure service implementation, the consumer and provider systems need to have proper, Arrowhead-issued certificates and their public keys registered in the Authorization System, see point 3._ 
 
 2. HumidityWSN service
 
@@ -69,4 +71,16 @@ This renders the SD and  names to be the following:
 I choose my demo systems to have details:  
   * hosting system details: systemName = "wsnGateway144-mediator-0", port = 8080, baseURL ="/values"
   * consumer system details: systemName = "laptop4-dashboard-0"
+
+3. Setting things up
+
+3.1. Generating certificates
+The first service (setRPM) is secure, and therefore the systems (provider and consumer) need proper certificates. 
+Certificate generation at the moment can only happen manually. 
+
+The second service implementation is insecure, so no certificates are needed for those systems hosting and consuming the HumidityWSN service. 
+
+3.2. Setting up the core: adding authorization rules
+In order for the consumers to be able to access the providers, authorization rules must be in place. 
+Authorization rules can be added using the management REST interface of the Authorization System. 
 
