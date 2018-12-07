@@ -1,5 +1,5 @@
-#Mini example project on how to define and then implement Arrowhead Services and Systems
-##Educational material from Bilbao workshop
+# Mini example project on how to define and then implement Arrowhead Services and Systems
+## Educational material from Bilbao workshop
 
 There are two examples in this folder with two scenarios. 
 
