@@ -14,6 +14,7 @@ import eu.arrowhead.common.Message;
 import eu.arrowhead.common.SampleData;
 import eu.arrowhead.common.api.server.ArrowheadHttpServer;
 import eu.arrowhead.common.api.server.ArrowheadResource;
+import eu.arrowhead.common.exception.ArrowheadException;
 import org.joda.time.DateTime;
 
 import javax.ws.rs.*;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 //REST service example
 public class IndoorResource extends ArrowheadResource {
 
-    public IndoorResource(ArrowheadHttpServer server) {
+    public IndoorResource(ArrowheadHttpServer server) throws ArrowheadException {
         super(server);
     }
 

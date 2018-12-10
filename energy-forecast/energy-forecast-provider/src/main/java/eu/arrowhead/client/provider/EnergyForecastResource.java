@@ -16,6 +16,7 @@ import eu.arrowhead.common.api.clients.HttpClient;
 import eu.arrowhead.common.api.clients.core.OrchestrationClient;
 import eu.arrowhead.common.api.server.ArrowheadHttpServer;
 import eu.arrowhead.common.api.server.ArrowheadResource;
+import eu.arrowhead.common.exception.ArrowheadException;
 import eu.arrowhead.common.model.ArrowheadSystem;
 import org.joda.time.DateTime;
 
@@ -35,7 +36,7 @@ public class EnergyForecastResource extends ArrowheadResource {
     @Context
     private Configuration configuration;
 
-    public EnergyForecastResource(ArrowheadHttpServer server) {
+    public EnergyForecastResource(ArrowheadHttpServer server) throws ArrowheadException {
         super(server);
 
         final ArrowheadSecurityContext securityContext = ArrowheadSecurityContext.createFromProperties();
