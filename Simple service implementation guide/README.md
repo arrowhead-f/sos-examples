@@ -3,6 +3,9 @@
 
 There are two examples in this folder with two scenarios. 
 
+_Prerequisites_: mandatory core systems are installed locally, or you may use the public testbeds. 
+Core version: Arrowhead 4.1.0
+
 **1.** setRPM service
 
 We have a motor we want to be able to control its current RPM. This _setRPM_ can be an Arrowhead service. 
