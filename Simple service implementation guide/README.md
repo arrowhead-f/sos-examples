@@ -6,6 +6,10 @@ There are two examples in this folder with two scenarios.
 _Prerequisites_: mandatory core systems are installed locally, or you may use the public testbeds. 
 Core version: Arrowhead 4.1.0
 
+You can install the core systems using the [Debian installation packages.](https://github.com/arrowhead-f/core-java/blob/master/documentation/Debian%20Packages/DEBIAN-INSTALL.md) You can also deploy and configure them manually. 
+
+You can find the latest releases [here](https://github.com/arrowhead-f/core-java/releases). 
+
 **1.** setRPM service
 
 We have a motor we want to be able to control its current RPM. This _setRPM_ can be an Arrowhead service. 
