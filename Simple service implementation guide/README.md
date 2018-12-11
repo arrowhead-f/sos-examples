@@ -84,7 +84,9 @@ The second service implementation is insecure, so no certificates are needed for
 
 **3.2.** Setting up the core: adding authorization rules
 In order for the consumers to be able to access the providers, authorization rules must be in place. 
-Authorization rules can be added using the management REST interface of the Authorization System. The endpoint for this interface is at /authorization/mgmt/intracloud and /authorization/mgmt/intercloud for intra-cloud and inter-cloud rules respectively, **using POST HTTP method**. The full URL for example can be http://0.0.0.0:8444/authorization/mgmt/intracloud.
+Authorization rules can be added using the management REST interface of the Authorization System. 
+
+The endpoint for this interface is at /authorization/mgmt/intracloud and /authorization/mgmt/intercloud for intra-cloud and inter-cloud rules respectively, **using POST HTTP method**. The full URL for example can be http://0.0.0.0:8444/authorization/mgmt/intracloud.
 
 **3.2.1.** Adding the humidity service intra-cloud authorization rules:
 ```
