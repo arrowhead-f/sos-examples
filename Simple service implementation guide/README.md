@@ -82,5 +82,47 @@ The second service implementation is insecure, so no certificates are needed for
 
 3.2. Setting up the core: adding authorization rules
 In order for the consumers to be able to access the providers, authorization rules must be in place. 
-Authorization rules can be added using the management REST interface of the Authorization System. 
+Authorization rules can be added using the management REST interface of the Authorization System. The endpoint for this interface is at /authorization/mgmt/intracloud and /authorization/mgmt/intercloud for intra-cloud and inter-cloud rules respectively, **using POST HTTP method**. The full URL for example can be http://0.0.0.0:8444/authorization/mgmt/intracloud.
+
+3.2.1. Adding the humidity service intra-cloud authorization rules:
+```
+{
+  "consumer" : {
+    "systemName" : "laptop4-dashboard-0",
+    "address" : "localhost",
+    "port" : 8080
+  },
+  "providerList" : [ {
+    "systemName" : "wsnGateway144-mediator-0",
+    "address" : "0.0.0.0",
+    "port" : 8080
+  } ],
+  "serviceList" : [ {
+    "serviceDefinition" : "Humidity",
+    "interfaces" : [ "plaintext" ],
+    "serviceMetadata" : { }
+  } ]
+}
+```
+
+3.2.2 Adding the RPM service intra-cloud authorization rules:
+```
+{
+  "consumer" : {
+    "systemName" : "boschPLC-RPMloop-0",
+    "address" : "localhost",
+    "port" : 8080
+  },
+  "providerList" : [ {
+    "systemName" : "motor123-controller-0",
+    "address" : "0.0.0.0",
+    "port" : 8080
+  } ],
+  "serviceList" : [ {
+    "serviceDefinition" : "RPM",
+    "interfaces" : [ "JSON" ],
+    "serviceMetadata" : { }
+  } ]
+}
+```
 
