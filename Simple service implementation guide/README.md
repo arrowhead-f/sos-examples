@@ -78,6 +78,8 @@ I choose my demo systems to have details:
 The first service (setRPM) is secure, and therefore the systems (provider and consumer) need proper certificates. 
 Certificate generation at the moment can only happen manually. 
 
+Please read [this guide](https://github.com/arrowhead-f/core-java/wiki/Creating-Application-System-Certificates) on how to create Arrowhead compliant certificates.
+
 The second service implementation is insecure, so no certificates are needed for those systems hosting and consuming the HumidityWSN service. 
 
 3.2. Setting up the core: adding authorization rules
