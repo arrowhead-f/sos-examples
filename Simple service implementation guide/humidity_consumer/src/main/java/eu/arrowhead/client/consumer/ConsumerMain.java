@@ -90,7 +90,7 @@ public class ConsumerMain {
       Interfaces: supported message formats (e.g. JSON, XML, JSON-SenML), a potential provider has to have at least 1 match,
       so the communication between consumer and provider can be facilitated.
      */
-    ArrowheadService service = new ArrowheadService("Humidity", Collections.singleton("plaintext"), metadata);
+    ArrowheadService service = new ArrowheadService("Humidity", Collections.singleton("String-CUSTOM-HTTP-NONE"), metadata);
 
     //Some of the orchestrationFlags the consumer can use, to influence the orchestration process
     Map<String, Boolean> orchestrationFlags = new HashMap<>();
