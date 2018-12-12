@@ -110,7 +110,7 @@ The endpoint for this interface is at /authorization/mgmt/intracloud and /author
   } ],
   "serviceList" : [ {
     "serviceDefinition" : "Humidity",
-    "interfaces" : [ "plaintext" ],
+    "interfaces" : [ "String-CUSTOM-HTTP-NONE" ],
     "serviceMetadata" : { }
   } ]
 }
@@ -131,7 +131,7 @@ The endpoint for this interface is at /authorization/mgmt/intracloud and /author
   } ],
   "serviceList" : [ {
     "serviceDefinition" : "RPM",
-    "interfaces" : [ "JSON" ],
+    "interfaces" : [ "JSON-CUSTOM-HTTP-SECURE_AC" ],
     "serviceMetadata" : { }
   } ]
 }
