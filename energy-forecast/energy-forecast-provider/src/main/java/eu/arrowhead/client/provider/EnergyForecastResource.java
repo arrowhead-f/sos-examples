@@ -52,7 +52,7 @@ public class EnergyForecastResource extends ArrowheadResource {
                           @QueryParam("building") long building,
                           @QueryParam("timestamp") long time
     ) {
-        return verifier.verifiedResponse(context, token, signature, () -> {
+        return getVerifier().verifiedResponse(context, token, signature, () -> {
             List<Entry> forecasts = outdoorClient.request(HttpClient.Method.GET,
                     UriBuilder.fromPath("")
                             .queryParam("Building", building)

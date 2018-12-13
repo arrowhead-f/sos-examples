@@ -41,7 +41,7 @@ public class OutdoorResource  extends ArrowheadResource {
                           @DefaultValue("0") @QueryParam("Tstart") final long tstart_in,
                           @DefaultValue("-1") @QueryParam("Tend") final long tend_in
     ) {
-        return verifier.verifiedResponse(context, token, signature, () -> {
+        return getVerifier().verifiedResponse(context, token, signature, () -> {
             final DateTime startOfData = new DateTime(2015, 1, 1, 0, 0);
 
             long tstart = tstart_in, tend = tend_in;
