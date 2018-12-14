@@ -46,46 +46,41 @@ public class EnergyForecastResource extends ArrowheadResource {
     }
 
     @GET
-    public Response getIt(@Context SecurityContext context,
-                          @QueryParam("token") String token,
-                          @QueryParam("signature") String signature,
-                          @QueryParam("building") long building,
+    public Response getIt(@QueryParam("building") long building,
                           @QueryParam("timestamp") long time
     ) {
-        return getVerifier().verifiedResponse(context, token, signature, () -> {
-            List<Entry> forecasts = outdoorClient.request(HttpClient.Method.GET,
-                    UriBuilder.fromPath("")
-                            .queryParam("Building", building)
-                            .queryParam("Tstart", time - 3600)
-                            .queryParam("Tend", time + 1800)
-            ).readEntity(Message.class).getEntry();
-            Entry forecast = forecasts.get(forecasts.size() - 1);
+        List<Entry> forecasts = outdoorClient.request(HttpClient.Method.GET,
+                UriBuilder.fromPath("")
+                        .queryParam("Building", building)
+                        .queryParam("Tstart", time - 3600)
+                        .queryParam("Tend", time + 1800)
+        ).readEntity(Message.class).getEntry();
+        Entry forecast = forecasts.get(forecasts.size() - 1);
 
-            Entry entry = new Entry();
-            entry.setBuilding(building);
-            Long timestamp = forecast.getTimestamp();
-            entry.setTimestamp(timestamp);
-            try {
-                float total = Predicter.predictTotalUsage(building, forecast.getOutTemp());
-                entry.setTotal(total);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                float water = Predicter.predictWaterUsage(building, new DateTime(time).getHourOfDay());
-                entry.setWater(water);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            entry.setOutTemp(forecast.getOutTemp());
-            ArrayList<Entry> entries = new ArrayList<>();
-            entries.add(entry);
-            Message response = new Message();
-            response.setTstart(timestamp);
-            response.setTend(timestamp);
-            response.setEntries(entries);
+        Entry entry = new Entry();
+        entry.setBuilding(building);
+        Long timestamp = forecast.getTimestamp();
+        entry.setTimestamp(timestamp);
+        try {
+            float total = Predicter.predictTotalUsage(building, forecast.getOutTemp());
+            entry.setTotal(total);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            float water = Predicter.predictWaterUsage(building, new DateTime(time).getHourOfDay());
+            entry.setWater(water);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        entry.setOutTemp(forecast.getOutTemp());
+        ArrayList<Entry> entries = new ArrayList<>();
+        entries.add(entry);
+        Message response = new Message();
+        response.setTstart(timestamp);
+        response.setTend(timestamp);
+        response.setEntries(entries);
 
-            return response;
-        });
+        return Response.status(200).entity(response).build();
     }
 }
