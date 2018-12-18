@@ -22,10 +22,7 @@
 /.nb-gradle/
 
 ### General ###
-/config/
 *.properties
 */target
 *.txt
 *app.conf
-*.p12
-*.pub
