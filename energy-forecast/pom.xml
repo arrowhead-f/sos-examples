@@ -40,8 +40,8 @@
         <dependencies>
             <dependency>
                 <groupId>eu.arrowhead</groupId>
-                <artifactId>client-common</artifactId>
-                <version>${project.version}</version>
+                <artifactId>arrowhead-client-common</artifactId>
+                <version>4.1.1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>eu.arrowhead.example</groupId>
