@@ -19,9 +19,8 @@ import eu.arrowhead.common.exception.ArrowheadException;
 import eu.arrowhead.common.model.ArrowheadSystem;
 import eu.arrowhead.common.model.OrchestrationFlags;
 import eu.arrowhead.common.model.ServiceRequestForm;
-import org.joda.time.DateTime;
-
 import javax.ws.rs.core.UriBuilder;
+import org.joda.time.DateTime;
 
 public class EnergyForecastConsumer extends ArrowheadApplication {
     public static void main(String[] args) throws ArrowheadException {
@@ -38,7 +37,7 @@ public class EnergyForecastConsumer extends ArrowheadApplication {
         final ArrowheadSystem me = ArrowheadSystem.createFromProperties();
         final OrchestrationClient orchestrationClient = OrchestrationClient.createFromProperties(securityContext);
         final ServiceRequestForm serviceRequestForm = new ServiceRequestForm.Builder(me)
-                .requestedService("energy", "json", getProps().isSecure())
+                .requestedService("energy", "JSON", getProps().isSecure())
                 .flag(OrchestrationFlags.Flags.OVERRIDE_STORE, true)
                 .flag(OrchestrationFlags.Flags.PING_PROVIDERS, false)
                 .flag(OrchestrationFlags.Flags.METADATA_SEARCH, true)

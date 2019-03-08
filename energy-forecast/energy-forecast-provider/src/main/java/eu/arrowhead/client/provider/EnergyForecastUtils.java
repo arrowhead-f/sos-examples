@@ -14,7 +14,7 @@ public class EnergyForecastUtils {
         final ArrowheadSecurityContext securityContext = orchestrationClient.getSecurityContext();
 
         final ServiceRequestForm srf = new ServiceRequestForm.Builder(me)
-                .requestedService(service, "json", secure)
+                .requestedService(service, "JSON", secure)
                 .flag(OrchestrationFlags.Flags.OVERRIDE_STORE, true)
                 .flag(OrchestrationFlags.Flags.PING_PROVIDERS, false)
                 .flag(OrchestrationFlags.Flags.METADATA_SEARCH, true)
