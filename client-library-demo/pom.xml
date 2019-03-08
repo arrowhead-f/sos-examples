@@ -41,8 +41,8 @@
         <version>${arrowhead.version}</version>
       </dependency>
       <dependency>
-        <groupId>eu.arrowhead</groupId>
-        <artifactId>demo-common</artifactId>
+        <groupId>eu.arrowhead.demo</groupId>
+        <artifactId>client-demo-common</artifactId>
         <version>${project.version}</version>
       </dependency>
     </dependencies>
