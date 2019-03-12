@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -e
+
+. /usr/share/debconf/confmodule
+
+case "$1" in
+    purge)
+        AH_CONF_DIR="/etc/arrowhead"
+        AH_SYSTEMS_DIR="${AH_CONF_DIR}/systems"
+
+        rmdir ${AH_SYSTEMS_DIR} 2>/dev/null || true
+        rmdir ${AH_CONF_DIR} 2>/dev/null || true
+        rmdir /var/log/arrowhead 2>/dev/null || true
+
+        db_purge
+
+        if [ -d ${AH_CONF_DIR} ]; then
+            echo "Directory '${AH_CONF_DIR}' is not empty, please remove manually" >&2
+        fi
+    ;;
+    remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+    ;;
+
+    *)
+        echo "postrm called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+exit 0

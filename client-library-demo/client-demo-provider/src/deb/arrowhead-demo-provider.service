@@ -1,0 +1,15 @@
+[Unit]
+Description=arrowhead-demo-provider
+After=network.target arrowhead-serviceregistry-sql.service
+Requires=arrowhead-serviceregistry-sql.service
+
+[Service]
+WorkingDirectory=/etc/arrowhead/systems/demo-provider
+ExecStart=/usr/bin/java -jar /usr/share/arrowhead/arrowhead-demo-provider.jar -d -daemon
+TimeoutStopSec=5
+Type=simple
+User=arrowhead
+Group=arrowhead
+
+[Install]
+WantedBy=default.target

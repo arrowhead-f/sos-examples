@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+PKG_NAME="arrowhead-demo-provider"
+
+case "$1" in
+    remove)
+        systemctl stop ${PKG_NAME}.service
+    ;;
+
+    upgrade|deconfigure)
+    ;;
+
+    failed-upgrade)
+    ;;
+
+    *)
+        echo "prerm called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+exit 0
