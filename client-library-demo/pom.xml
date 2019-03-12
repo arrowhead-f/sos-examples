@@ -31,6 +31,7 @@
     <maven.jar.version>3.1.1</maven.jar.version>
     <maven.dependency.version>3.1.1</maven.dependency.version>
     <arrowhead.version>4.1.1-SNAPSHOT</arrowhead.version>
+    <jdeb.version>1.7</jdeb.version>
   </properties>
 
   <dependencyManagement>

@@ -38,7 +38,7 @@
             </manifestEntries>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>eu.arrowhead.demo.provider.ProviderMain</mainClass>
+              <mainClass>eu.arrowhead.demo.publisher.PublisherMain</mainClass>
               <classpathPrefix>lib/</classpathPrefix>
             </manifest>
           </archive>
