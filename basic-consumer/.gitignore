@@ -1,0 +1,5 @@
+/bin/
+/config/app.properties
+.classpath
+.project
+BasicConsumer.iml
