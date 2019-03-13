@@ -26,7 +26,7 @@ cert_dir=.
 
 # Webserver parameters
 address=$(hostname -I | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
-port=8461
+port=8467
 secure=true
 
 # System registry entry parameters
