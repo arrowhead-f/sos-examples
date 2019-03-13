@@ -4,7 +4,7 @@ set -e
 
 . /usr/share/debconf/confmodule
 
-SYSTEM_NAME="demo-consumer"
+SYSTEM_NAME="client-demo-consumer"
 
 case "$1" in
     purge)

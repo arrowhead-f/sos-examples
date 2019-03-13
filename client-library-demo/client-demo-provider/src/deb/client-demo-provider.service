@@ -1,11 +1,11 @@
 [Unit]
-Description=arrowhead-demo-publisher
+Description=client-demo-provider
 After=network.target arrowhead-serviceregistry-sql.service
 Requires=arrowhead-serviceregistry-sql.service
 
 [Service]
-WorkingDirectory=/etc/arrowhead/systems/demo-publisher
-ExecStart=/usr/bin/java -jar /usr/share/arrowhead/arrowhead-demo-publisher.jar -d -daemon
+WorkingDirectory=/etc/arrowhead/systems/client-demo-provider
+ExecStart=/usr/bin/java -jar /usr/share/arrowhead/client-demo-provider.jar -d -daemon
 TimeoutStopSec=5
 Type=simple
 User=arrowhead

@@ -4,7 +4,7 @@ set -e
 
 . /usr/share/debconf/confmodule
 
-SYSTEM_NAME="demo-publisher"
+SYSTEM_NAME="client-demo-publisher"
 
 case "$1" in
     purge)

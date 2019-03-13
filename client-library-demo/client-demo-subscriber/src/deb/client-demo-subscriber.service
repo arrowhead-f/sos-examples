@@ -1,11 +1,11 @@
 [Unit]
-Description=arrowhead-demo-subscriber
+Description=client-demo-subscriber
 After=network.target arrowhead-serviceregistry-sql.service
 Requires=arrowhead-serviceregistry-sql.service
 
 [Service]
-WorkingDirectory=/etc/arrowhead/systems/demo-subscriber
-ExecStart=/usr/bin/java -jar /usr/share/arrowhead/arrowhead-demo-subscriber.jar -d -daemon
+WorkingDirectory=/etc/arrowhead/systems/client-demo-subscriber
+ExecStart=/usr/bin/java -jar /usr/share/arrowhead/client-demo-subscriber.jar -d -daemon
 TimeoutStopSec=5
 Type=simple
 User=arrowhead

@@ -4,8 +4,8 @@ set -e
 
 . /usr/share/debconf/confmodule
 
-SYSTEM_NAME="demo-subscriber"
-PKG_NAME="arrowhead-demo-subscriber"
+SYSTEM_NAME="client-demo-subscriber"
+PKG_NAME="client-demo-subscriber"
 
 case "$1" in
     configure)
@@ -30,7 +30,7 @@ port=8465
 secure=true
 
 # System registry entry parameters
-system_name=subscriber-client-demo
+system_name=client-demo-subscriber
 service_name=temperature
 service_uri=temperature
 interfaces=JSON, XML

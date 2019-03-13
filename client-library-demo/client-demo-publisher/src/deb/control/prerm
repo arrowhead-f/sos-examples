@@ -2,7 +2,7 @@
 
 set -e
 
-PKG_NAME="arrowhead-demo-publisher"
+PKG_NAME="client-demo-publisher"
 
 case "$1" in
     remove)
