@@ -28,7 +28,7 @@ class ConsumerMain extends ArrowheadApplication {
 
     final ArrowheadSystem me = ArrowheadSystem.createFromProperties();
     final ServiceRequestForm srf = new ServiceRequestForm.Builder(me)
-        .requestedService("temperature", "JSON", getProps().isSecure())
+        .requestedService(getProps().getServiceName(), "JSON", getProps().isSecure())
         .flag(OrchestrationFlags.Flags.OVERRIDE_STORE, true)
         .flag(OrchestrationFlags.Flags.PING_PROVIDERS, false)
         .flag(OrchestrationFlags.Flags.METADATA_SEARCH, false)
