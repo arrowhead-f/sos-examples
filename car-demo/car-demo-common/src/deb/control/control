@@ -1,0 +1,10 @@
+Package: [[name]]
+Version: [[version]]
+Section: contrib/java
+Priority: optional
+Architecture: all
+Maintainer: Thomas Pedersen <tp@cs.aau.dk>
+Homepage: http://www.arrowhead.eu
+Description: Common library for the car demo
+Distribution: development
+Depends: java-runtime-headless, arrowhead-client-common

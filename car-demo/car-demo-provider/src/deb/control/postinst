@@ -1,0 +1,96 @@
+#!/bin/sh
+
+set -e
+
+. /usr/share/debconf/confmodule
+
+SYSTEM_NAME="car-demo-provider"
+PKG_NAME="car-demo-provider"
+
+case "$1" in
+    configure)
+        . /usr/share/arrowhead/conf/ahconf.sh
+        SYSTEM_DIR="${AH_SYSTEMS_DIR}/${SYSTEM_NAME}"
+
+        if [ ! -d "${SYSTEM_DIR}" ]; then
+          mkdir -p ${SYSTEM_DIR}
+        fi
+
+        ah_cert_signed_system ${SYSTEM_NAME}
+        ah_cert_export_pub "${AH_SYSTEMS_DIR}/authorization" "authorization" "${SYSTEM_DIR}"
+
+        if [ ! -f "${SYSTEM_DIR}/default.conf" ]; then
+          /bin/cat <<EOF >${SYSTEM_DIR}/default.conf
+# Directories
+cert_dir=.
+
+# Webserver parameters
+address=$(hostname -I | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+port=8461
+secure=true
+
+# System registry entry parameters
+system_name=car-demo-provider
+service_name=temperature
+service_uri=temperature
+interfaces=JSON
+service_metadata=unit-celsius
+
+# Key and trust stores
+keystorepass=${AH_PASS_CERT}
+truststorepass=${AH_PASS_CERT}
+keypass=${AH_PASS_CERT}
+
+# Core systems
+#sr_address=0.0.0.0
+#eh_address=0.0.0.0
+#ca_address=0.0.0.0
+#orch_address=0.0.0.0
+
+# Logging parameters
+log4j.rootLogger=INFO, DB, FILE, CONSOLE
+
+log4j.appender.DB=org.apache.log4j.jdbc.JDBCAppender
+log4j.appender.DB.URL=jdbc:mysql://127.0.0.1:3306/arrowhead
+log4j.appender.DB.user=arrowhead
+log4j.appender.DB.password=${AH_PASS_DB}
+log4j.appender.DB.sql=INSERT INTO logs(id, date, origin, level, message) \
+                      VALUES(DEFAULT,'%d{yyyy-MM-dd HH:mm:ss}','%C','%p','%m')
+log4j.appender.DB.layout=org.apache.log4j.PatternLayout
+log4j.logger.org.hibernate=fatal
+
+log4j.appender.FILE=org.apache.log4j.FileAppender
+log4j.appender.FILE.File=/var/log/arrowhead/${SYSTEM_NAME}.log
+log4j.appender.FILE.ImmediateFlush=true
+log4j.appender.FILE.Threshold=debug
+log4j.appender.FILE.Append=false
+log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.FILE.layout.conversionPattern=%d{yyyy-MM-dd HH:mm:ss}, %C, %p, %m%n
+
+log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
+log4j.appender.CONSOLE.target=System.err
+log4j.appender.CONSOLE.ImmediateFlush=true
+log4j.appender.CONSOLE.Threshold=debug
+log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
+log4j.appender.CONSOLE.layout.conversionPattern=%d{yyyy-MM-dd HH:mm:ss}  %p  %-160m  \
+                                                %c{1}.%M(%F:%L)%n
+EOF
+          chown root:arrowhead ${SYSTEM_DIR}/default.conf
+          chmod 640 ${SYSTEM_DIR}/default.conf
+        fi
+
+        echo "Restarting ${PKG_NAME}..." >&2
+        systemctl daemon-reload
+        systemctl restart ${PKG_NAME}.service
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+exit 0

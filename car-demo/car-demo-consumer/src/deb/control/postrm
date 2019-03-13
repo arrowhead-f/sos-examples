@@ -1,0 +1,33 @@
+#!/bin/sh
+
+set -e
+
+. /usr/share/debconf/confmodule
+
+SYSTEM_NAME="car-demo-consumer"
+
+case "$1" in
+    purge)
+        AH_CONF_DIR="/etc/arrowhead"
+        AH_SYSTEMS_DIR="${AH_CONF_DIR}/systems"
+        SYSTEM_DIR="${AH_SYSTEMS_DIR}/${SYSTEM_NAME}"
+
+        rm -f \
+            /var/log/arrowhead/${SYSTEM_NAME}.log \
+            ${SYSTEM_DIR}/default.conf \
+            ${SYSTEM_DIR}/authorization.pub \
+            ${SYSTEM_DIR}/${SYSTEM_NAME}.p12
+        rmdir ${SYSTEM_DIR} 2>/dev/null || true
+        rmdir /var/log/arrowhead 2>/dev/null || true
+        db_purge
+    ;;
+    remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+    ;;
+
+    *)
+        echo "postrm called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+exit 0

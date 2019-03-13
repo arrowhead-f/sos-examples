@@ -13,6 +13,7 @@
   <modules>
     <module>energy-forecast</module>
     <module>client-library-demo</module>
+    <module>car-demo</module>
   </modules>
 
 </project>

@@ -1,0 +1,15 @@
+[Unit]
+Description=car-demo-consumer
+After=network.target arrowhead-serviceregistry-sql.service
+Requires=arrowhead-serviceregistry-sql.service
+
+[Service]
+WorkingDirectory=/etc/arrowhead/systems/car-demo-consumer
+ExecStart=/usr/bin/java -jar /usr/share/arrowhead/car-demo-consumer.jar -d -daemon
+TimeoutStopSec=5
+Type=simple
+User=arrowhead
+Group=arrowhead
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>car-demo</artifactId>
+    <groupId>eu.arrowhead</groupId>
+    <version>4.1.1-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>eu.arrowhead.demo</groupId>
+  <artifactId>car-demo-common</artifactId>
+
+  <dependencies>
+    <dependency>
+      <groupId>eu.arrowhead</groupId>
+      <artifactId>arrowhead-client-common</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>${maven.dependency.version}</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/lib/</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>jdeb</artifactId>
+        <groupId>org.vafer</groupId>
+        <version>${jdeb.version}</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jdeb</goal>
+            </goals>
+            <configuration>
+              <deb>target/${project.artifactId}_${project.version}.deb</deb>
+              <verbose>true</verbose>
+              <controlDir>${basedir}/src/deb/control</controlDir>
+              <dataSet>
+                <data>
+                  <type>file</type>
+                  <src>${project.build.directory}/${project.build.finalName}.jar</src>
+                  <mapper>
+                    <type>perm</type>
+                    <prefix>/usr/share/arrowhead/lib/demo</prefix>
+                  </mapper>
+                </data>
+              </dataSet>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
