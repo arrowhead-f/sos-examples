@@ -31,10 +31,9 @@ secure=true
 
 # System registry entry parameters
 system_name=car-demo-provider
-service_name=temperature
-service_uri=temperature
+service_name=car
+service_uri=car
 interfaces=JSON
-service_metadata=unit-celsius
 
 # Key and trust stores
 keystorepass=${AH_PASS_CERT}
