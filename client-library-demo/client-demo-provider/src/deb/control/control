@@ -8,4 +8,4 @@ Homepage: http://www.arrowhead.eu
 Description: Arrowhead Demo Provider
 Distribution: development
 Depends: java-runtime-headless, arrowhead-common, arrowhead-client-common,
-         arrowhead-core-common, arrowhead-demo-common
+         arrowhead-core-common, client-demo-common

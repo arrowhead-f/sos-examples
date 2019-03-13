@@ -33,7 +33,7 @@
           <archive>
             <manifestEntries>
               <Class-Path>
-                lib/demo/arrowhead-demo-common-${project.version}.jar
+                lib/demo/client-demo-common-${project.version}.jar
               </Class-Path>
             </manifestEntries>
             <manifest>
