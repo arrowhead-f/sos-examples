@@ -3,7 +3,15 @@ package eu.arrowhead.client.provider;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import eu.arrowhead.common.Entry;
-import org.apache.log4j.Logger;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
 import weka.classifiers.Classifier;
 import weka.classifiers.functions.MultilayerPerceptron;
@@ -15,20 +23,12 @@ import weka.core.converters.ConverterUtils;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Remove;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 public class Predicter {
     private static final String CACHE_MODEL_FMT = "cache%d.model";
     private static final String CACHE_CSV_FMT = "cache%d.csv";
     private static final String CACHE_TS = "cache_ts.csv";
-    private static final Logger LOG = Logger.getLogger(Predicter.class);
-    protected final Logger log = Logger.getLogger(getClass());
+    private static final Logger LOG = LogManager.getLogger(Predicter.class);
+    protected final Logger log = LogManager.getLogger(getClass());
 
     private static Long[] tsData = null;
 
