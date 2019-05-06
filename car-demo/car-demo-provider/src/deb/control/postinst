@@ -78,7 +78,7 @@ appender.file.immediateFlush=true
 appender.db.type=JDBC
 appender.db.name=DB
 appender.db.connectionSource.type=DriverManager
-appender.db.connectionSource.connectionString=jdbc:mysql://127.0.0.1:3306/arrowhead
+appender.db.connectionSource.connectionString=jdbc:mysql://127.0.0.1:3306/arrowhead?serverTimezone=UTC
 appender.db.connectionSource.username=arrowhead
 appender.db.connectionSource.password=${AH_PASS_DB}
 appender.db.tableName=logs
