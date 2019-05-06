@@ -36,6 +36,14 @@
         <joda-time.version>2.10</joda-time.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>arrowhead</id>
+            <name>Arrowhead Maven Repository</name>
+            <url>https://raw.github.com/arrowhead-f/client-java/release/maven/</url>
+        </repository>
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
