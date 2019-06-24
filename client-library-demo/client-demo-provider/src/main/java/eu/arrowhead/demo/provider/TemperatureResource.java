@@ -4,6 +4,7 @@ import eu.arrowhead.common.api.server.ArrowheadHttpServer;
 import eu.arrowhead.common.api.server.ArrowheadResource;
 import eu.arrowhead.common.exception.ArrowheadException;
 import eu.arrowhead.demo.model.Temperature;
+import java.time.Instant;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -20,7 +21,8 @@ public class TemperatureResource extends ArrowheadResource {
 
   @GET
   public Response get() {
-    Temperature readout = new Temperature(System.currentTimeMillis(), 1);
+    double temperature = 21.0;
+    Temperature readout = new Temperature(Instant.now().getEpochSecond(), temperature);
     return Response.status(200).entity(readout).build();
   }
 }
