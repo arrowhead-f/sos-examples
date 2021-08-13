@@ -28,7 +28,7 @@
   <properties>
     <mvn.compiler.version>3.8.0</mvn.compiler.version>
     <mvn.compile.target>1.8</mvn.compile.target>
-    <bouncy.version>1.59</bouncy.version>
+    <bouncy.version>1.67</bouncy.version>
     <jackson.version>2.9.7</jackson.version>
     <javax.servlet.version>4.0.1</javax.servlet.version>
     <jersey.version>2.27</jersey.version>
